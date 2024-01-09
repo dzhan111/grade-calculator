@@ -2,78 +2,57 @@
 let inputCounter = 1;
 
 function addInput() {
-    var inputContainer = document.getElementById('input-container');
+    const inputsContainer = document.getElementById('inputs-container');
+    const newInputDiv = document.createElement('div');
 
-    // Create a new input field
-    var newInput = document.createElement('div');
-   
+    newInputDiv.innerHTML = `
+        <br>
+        <div>
+            <label for="assignmentName">Assignment: </label>
+            <input type="text" name="assignmentName[]" class="assignmentName" placeholder="(optional)">
+        </div>
+        <div class="aligned">
+            <label for="grade">Grade:</label>
+            <input type="number" name="grade[]" class="grade" min="0" max="100" placeholder="grade (out of 100)">
+        </div>
+        <div class="aligned">
+            <label for="weight">Weight:</label>
+            <input type="number" name="weight[]" class="weight" min="0" max="100" placeholder="% weight (out of 100)">
+        </div>
+        <button onclick="removeInput(this)">Remove</button>
+    `;
 
-    newInput.innerHTML = 'Assignment: <input type="text" class="assignment'+inputCounter+'" placeholder="assignment">' +
-                        'Grade: <input type="text" id="grade-' + inputCounter + '" placeholder="grade(out of 100)">' +
-                        'Weight: <input type="text" id="weight-' + inputCounter + '" placeholder="weight in %">' +
-                        '<span class="remove-button" onclick="removeInput(' + inputCounter + ')">Remove</span>';
-
-    // Append the new input field to the container
-    inputContainer.appendChild(newInput);
-
-    inputCounter++;
-    console.log("hi");
+    inputsContainer.appendChild(newInputDiv);
 }
 
-function removeInput(inputId) {
-    // Get the input element by ID
-    
-    var gradeElement = document.getElementById('grade-' + inputId);
-    var weightElement = document.getElementById('weight-' + inputId);
+function calculateAverage() {
+    const assignmentNames = document.querySelectorAll('.assignmentName');
+    const grades = document.querySelectorAll('.grade');
+    const weights = document.querySelectorAll('.weight');
 
-    // Get the parent element (the div containing the input and remove button)
-    var gradeParent = gradeElement.parentNode;
-    var weightParent = weightElement.parentNode;
+    let totalWeightedScore = 0;
+    let totalWeight = 0;
 
-    // Remove the parent element from the container
-    gradeParent.parentNode.removeChild(gradeParent);
-    weightParent.parentNode.removeChild(weightParent);
+    for (let i = 0; i < assignmentNames.length; i++) {
+        const grade = parseFloat(grades[i].value);
+        const weight = parseFloat(weights[i].value);
 
-    // Decrement the inputCounter
-    inputCounter--;
-
-}
-
-function calculate() {
-    var totalWeightedGrade = 0;
-    var totalWeight = 0;
-    console.log("hi");
-
-    
-    for (let i = 1; i <= inputCounter; i++) {
-        var grade = parseFloat(document.getElementById('grade-' + i).value) || 0;
-        var weight = parseFloat(document.getElementById('weight-' + i).value) || 0;
-
-        totalWeightedGrade += (grade / 100) * weight;
-        totalWeight += weight;
+        if (!isNaN(grade) && !isNaN(weight)) {
+            totalWeightedScore += (grade * weight);
+            totalWeight += weight;
+        }
     }
-        
-    console.log("hidsf");
-    
 
-    if (totalWeight > 0) {
-        var averageGrade = (totalWeightedGrade / totalWeight) * 100;
-        alert('Weighted Average Grade: ' + averageGrade.toFixed(2) + '%');
+    const average = totalWeight !== 0 ? totalWeightedScore / totalWeight : 0;
 
-        var result = document.getElementById('result');
-
-        result.innerHTML = "hi"
-        
-        
-
-    } else {
-        alert('Please enter grades and weights.');
-    }
+    const resultContainer = document.getElementById('result');
+    resultContainer.innerHTML = `Raw Weighted Average: ${average.toFixed(2)} %`;
 }
 
-function works(){
-    var inputContainer = document.getElementById('input-container');
 
-    inputContainer.innerHTML = "hi"
-    console.log("hi");
+function removeInput(button) {
+    const assignmentInput = button.parentElement;
+    assignmentInput.remove();
 }
+
+

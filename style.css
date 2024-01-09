@@ -1,3 +1,24 @@
 *{
     background-color: aliceblue;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+#inputs-container .aligned {
+
+    display:inline-block;
+ 
+}
+
+.grade{
+    width: 150px;
+}
+
+.weight{
+    width: 150px;
+}

@@ -2,27 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grade Calculator</title>
     <script src="index.js" defer></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
+<div>
+    <h1>Grade Calculator </h1>
 
-
-
-    <h1>Grade Calculator</h1>
-    <div id="input-container"></div>
-    <button onclick="addInput()">Add Additional Input</button>
-    <br>
-    <button onclick="calculate()">Calculate Result</button>
-    <div id="result">
-
+    <div id="inputs-container">
+        <div>
+            <label for="assignmentName">Assignment: </label>
+            <input type="text" name="assignmentName[]" class="assignmentName" placeholder="(optional)">
+        </div>
+        <div class="aligned">
+            <label for="grade">Grade:</label>
+            <input type="number" name="grade[]" class="grade" min="0" max="100" placeholder="grade (out of 100)">
+        </div>
+        <div class="aligned">
+            <label for="weight">Weight:</label>
+            <input type="number" name="weight[]" class="weight" min="0" max="100" placeholder="% weight (out of 100)">
+        </div>
+        
     </div>
+    <br>
+    <button onclick="addInput()">Add Assignment</button>
+    <br>
+    <button onclick="calculateAverage()">Calculate</button>
 
+    <div id="result"></div>
+</div>
+
+<script>
     
-    
+</script>
+
 </body>
 </html>
