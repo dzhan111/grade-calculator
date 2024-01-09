@@ -22,3 +22,7 @@ input::-webkit-inner-spin-button {
 .weight{
     width: 150px;
 }
+
+#final-exam input{
+    width: 150px;
+}

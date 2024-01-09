@@ -8,15 +8,12 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
+<h1>Grade calculator</h1>
 <div>
-    <h1>Grade Calculator </h1>
+    <h2>Raw Average </h2>
 
     <div id="inputs-container">
-        <div>
-            <label for="assignmentName">Assignment: </label>
-            <input type="text" name="assignmentName[]" class="assignmentName" placeholder="(optional)">
-        </div>
+        
         <div class="aligned">
             <label for="grade">Grade:</label>
             <input type="number" name="grade[]" class="grade" min="0" max="100" placeholder="grade (out of 100)">
@@ -30,14 +27,24 @@
     <br>
     <button onclick="addInput()">Add Assignment</button>
     <br>
+    <br>
     <button onclick="calculateAverage()">Calculate</button>
 
     <div id="result"></div>
 </div>
-
-<script>
+<br>
+<div id="final-exam">
+    <h2>what do you need on your final?</h2>
+    <input id="current" type="number" placeholder="current grade" max="100" min="0">
+    <input id="target" type="number"placeholder="target grade" max="100" min="0">
     
-</script>
+    <input id="final-weight" placeholder="final exam weight?" max="100" min="0">
+    <br><br>
+    <button onclick="calculateFinal()">Calculate</button>
+
+    <div id="result2"></div>
+
+</div>
 
 </body>
 </html>
